@@ -35,7 +35,7 @@ export default function Options({
         className="flex justify-between w-full max-w-4xl p-10 mx-auto"
       >
         <select
-          className="rounded-lg bg-white border border-gray-500 px-3 py-1 font-semibold
+          className="rounded-lg bg-white px-3 py-1 font-semibold
           focus:outline-none focus:ring-1 focus:ring-gray-400"
           onChange={onSelect}
           defaultValue={order ?? "-spent_at"}
