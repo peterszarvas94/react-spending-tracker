@@ -17,7 +17,7 @@ export async function getSpendings({ order, currency }: Props) {
   }
 
   //get spendings from API
-  const res = await fetch(url, { next: { tags: ['spendings'] } });
+  const res = await fetch(url);
   const spendings = await res.json();
 
   // check if the response is an array

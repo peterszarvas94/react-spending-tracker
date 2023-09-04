@@ -12,3 +12,11 @@ export const spendingSchema = z.object({
 });
 
 export type SpendingType = z.infer<typeof spendingSchema>;
+
+export const formSchema = z.object({
+  description: z.string(),
+  amount: z.string(),
+  currency: z.enum(["USD", "HUF"]),
+});
+
+export type FormType = z.infer<typeof formSchema>;
