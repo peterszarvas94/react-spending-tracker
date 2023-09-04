@@ -1,7 +1,6 @@
 import type { Currency, Order } from "@/utils/types";
 import Options from "@/components/Options";
 import Spending from "@/components/Spending";
-import submitForm from "@/utils/actions";
 import { getSpendings } from "@/utils/api";
 import Form from "@/components/Form";
 
