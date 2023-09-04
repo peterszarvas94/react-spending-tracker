@@ -5,7 +5,7 @@ import Spending from "./Spending";
 import { useSpendingsContext } from "@/context/spending";
 
 export default function Options() {
-  const { setOrder, setCurrency, spendings } = useSpendingsContext();
+  const { setOrder, currency, setCurrency, spendings } = useSpendingsContext();
 
   return (
     <>
@@ -29,22 +29,22 @@ export default function Options() {
           className="flex gap-4"
         >
           <button
-            className="rounded-lg bg-blue-200 text-blue-600 px-3 py-1 font-bold
-            focus:outline-none focus:ring-1 focus:ring-gray-400"
+            className={`rounded-lg ${currency === null ? "bg-blue-200 text-blue-600" : "bg-white"} px-3 py-1 font-bold
+            focus:outline-none focus:ring-1 focus:ring-gray-400`}
             onClick={() => setCurrency(null)}
           >
             ALL
           </button>
           <button
-            className="rounded-lg bg-white px-3 py-1
-            focus:outline-none focus:ring-1 focus:ring-gray-400"
+            className={`rounded-lg ${currency === "HUF" ? "bg-blue-200 text-blue-600" : "bg-white"} px-3 py-1 font-bold
+            focus:outline-none focus:ring-1 focus:ring-gray-400`}
             onClick={() => setCurrency("HUF")}
           >
             HUF
           </button>
           <button
-            className="rounded-lg bg-white px-3 py-1
-            focus:outline-none focus:ring-1 focus:ring-gray-400"
+            className={`rounded-lg ${currency === "USD" ? "bg-blue-200 text-blue-600" : "bg-white"} px-3 py-1 font-bold
+            focus:outline-none focus:ring-1 focus:ring-gray-400`}
             onClick={() => setCurrency("USD")}
           >
             USD

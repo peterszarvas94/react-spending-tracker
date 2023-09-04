@@ -7,6 +7,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 type Context = {
   setOrder: Dispatch<SetStateAction<Order>>;
+  currency: Currency | null;
   setCurrency: Dispatch<SetStateAction<Currency | null>>;
   spendings: SpendingType[];
 }
@@ -39,6 +40,7 @@ export function SpendingsContextProvider({
   return (
     <SpendingsContext.Provider value={{
       setOrder,
+      currency,
       setCurrency,
       spendings,
     }}>

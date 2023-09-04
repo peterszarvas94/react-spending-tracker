@@ -30,7 +30,7 @@ export async function getSpendings({ order, currency }: Props = {}) {
     console.error(error);
   }
 
-  // check if the array contains objects in the right format
+  // check if objects are in the right format
   const parsedSpendings = parsedSpendingsArray.map((spending) => {
     try {
       const parsedSpending = spendingSchema.parse(spending);
@@ -42,7 +42,6 @@ export async function getSpendings({ order, currency }: Props = {}) {
   });
 
   // filter out the null values
-
   const filteredSpendings = parsedSpendings.filter((spending) => {
     return spending !== null;
   }) as SpendingType[];
