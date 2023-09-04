@@ -1,28 +1,14 @@
-import Spending from "@/components/Spending";
-import { BiEditAlt } from "react-icons/bi";
-import { FaXmark } from "react-icons/fa6";
-import { LuDollarSign } from "react-icons/lu";
+import { SpendingsContextProvider } from "@/context/spending";
+import submitForm from "./actions";
+import Options from "@/components/Options";
 
-export default function Home() {
-
-  async function submitForm(data: FormData) {
-    "use server";
-    const description = data.get('description') as string;
-    const amountStr = data.get('amount') as string;
-    const amount = parseFloat(amountStr);
-    const currency = data.get('currency') as string;
-    const date = new Date().toISOString();
-
-    console.log(description, amount, currency, date);
-
-  }
-
+export default async function Home() {
   return (
     <main
-      className="bg-gray-200 h-screen text-lg"
+      className="bg-gray-200 min-h-screen text-lg"
     >
       <form
-        className="flex gap-4 w-full max-w-4xl p-10"
+        className="flex gap-4 w-full max-w-4xl p-10 mx-auto"
         action={submitForm}
       >
         <input
@@ -64,49 +50,9 @@ export default function Home() {
         </button>
       </form>
 
-      <section
-        className="flex justify-between w-full max-w-4xl p-10"
-      >
-        <button
-          className="rounded-lg bg-white border border-gray-500 px-3 py-1 font-semibold
-          focus:outline-none focus:ring-1 focus:ring-gray-400"
-        >
-          Sort by Date descending (default)
-        </button>
-        <div
-          className="flex gap-4"
-        >
-          <button
-            className="rounded-lg bg-blue-200 text-blue-600 px-3 py-1 font-bold
-            focus:outline-none focus:ring-1 focus:ring-gray-400"
-          >
-            ALL
-          </button>
-          <button
-            className="rounded-lg bg-white px-3 py-1
-            focus:outline-none focus:ring-1 focus:ring-gray-400"
-          >
-            HUF
-          </button>
-          <button
-            className="rounded-lg bg-white px-3 py-1
-            focus:outline-none focus:ring-1 focus:ring-gray-400"
-          >
-            USD
-          </button>
-        </div>
-      </section>
-
-      <ul
-        className="flex gap-4 w-full max-w-4xl px-10"
-      >
-       <Spending
-          description="Mango"
-          amount={12.00}
-          currency="USD"
-          spent_at={new Date('2021-8-9 9:40').toISOString()}
-        />
-      </ul>
+      <SpendingsContextProvider>
+        <Options />
+      </SpendingsContextProvider>
     </main>
   )
 }

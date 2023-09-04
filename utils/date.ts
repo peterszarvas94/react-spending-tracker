@@ -1,6 +1,5 @@
 export function convertToString(dateStr: string) {
   const date = new Date(dateStr);
-  console.log(date);
 
   const hours = date.getHours();
   const minutes = date.getMinutes();
