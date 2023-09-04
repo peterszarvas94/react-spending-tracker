@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
+import { env } from "./env";
 
 export default async function submitForm(data: FormData) {
   const description = data.get('description') as string;
@@ -16,7 +17,7 @@ export default async function submitForm(data: FormData) {
   let res: Response | undefined;
 
   try {
-    res = await fetch("https://shielded-depths-43687-bb049deacd16.herokuapp.com/spendings/", {
+    res = await fetch(env("URL"), {
       method: 'POST',
       body: JSON.stringify({
         description,

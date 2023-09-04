@@ -1,6 +1,7 @@
 import type { Currency, Order, SpendingType } from "./types";
 import { z } from "zod";
 import { spendingSchema } from "./types";
+import { env } from "./env";
 
 interface Props {
   order: Order;
@@ -9,7 +10,7 @@ interface Props {
 
 export async function getSpendings({ order, currency }: Props) {
   // create a URL object
-  const url = new URL("https://shielded-depths-43687-bb049deacd16.herokuapp.com/spendings");
+  const url = new URL(env("URL"));
   url.searchParams.set("order", order);
   if (currency) {
     url.searchParams.set("currency", currency);
