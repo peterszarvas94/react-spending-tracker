@@ -1,6 +1,6 @@
 # Spending frontend
 
-This project if for [Polygence coding challange](https://github.com/polygence/spending-frontend)
+This project is for [Polygence coding challange](https://github.com/polygence/spending-frontend)
 
 ## How to run
 
