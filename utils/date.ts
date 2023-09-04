@@ -1,22 +1,17 @@
-export function convertToString(dateStr: string) {
-  const date = new Date(dateStr);
+export function convertToString(dateTimeStr: string) {
+  const date = new Date(dateTimeStr);
 
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
+  const timeStr = date.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 
-  const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`; // 1 -> 01
-  const formattedHours = hours > 12 ? hours - 12 : hours; // 13 -> 1
+  const dateStr = date.toLocaleString("en-US", {
+    month: "long",
+    day: "2-digit",
+    year: "numeric",
+  });
 
-  const amOrPm = hours >= 12 ? "PM" : "AM"; // AM or PM
-
-  const monthName = date.toLocaleString("en", { month: "long" }); // January
-
-  const day = date.getDate(); 
-  const formattedDay = day < 10 ? `0${day}` : `${day}`; // 1 -> 01
-
-  const year = date.getFullYear();
-
-  const timeStr = `${formattedHours}:${formattedMinutes} ${amOrPm} - ${monthName} ${formattedDay}, ${year}`;
-
-  return timeStr;
+  return `${timeStr} - ${dateStr}`;
 }

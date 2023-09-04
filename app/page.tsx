@@ -1,7 +1,7 @@
 import type { Currency, Order } from "@/utils/types";
+import { getSpendings } from "@/utils/api";
 import Options from "@/components/Options";
 import Spending from "@/components/Spending";
-import { getSpendings } from "@/utils/api";
 import Form from "@/components/Form";
 
 export const dynamic = "force-dynamic";
