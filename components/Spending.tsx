@@ -3,7 +3,6 @@ import { BiEditAlt } from "react-icons/bi";
 import { FaXmark } from "react-icons/fa6";
 import { LuDollarSign } from "react-icons/lu";
 
-
 interface Props {
   description: string;
   amount: number;

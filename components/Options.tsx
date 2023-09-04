@@ -1,11 +1,33 @@
 "use client";
 
-import type { Order } from "@/utils/types";
-import Spending from "./Spending";
-import { useSpendingsContext } from "@/context/spending";
+import type { Order, Currency } from "@/utils/types";
+import type { ChangeEvent } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { generateUrl } from "@/utils/generateUrl";
 
-export default function Options() {
-  const { setOrder, currency, setCurrency, spendings } = useSpendingsContext();
+interface Props {
+  order?: Order;
+  currency?: Currency;
+}
+
+export default function Options({
+  order,
+  currency,
+}: Props) {
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  function onSelect(event: ChangeEvent<HTMLSelectElement>) {
+    const newOrder = event.target.value as Order;
+    const url = generateUrl(pathname, newOrder, currency);
+    router.push(url);
+  }
+
+  function onFilter(newCurrency?: Currency) {
+    const url = generateUrl(pathname, order, newCurrency);
+    router.push(url);
+  }
 
   return (
     <>
@@ -15,10 +37,8 @@ export default function Options() {
         <select
           className="rounded-lg bg-white border border-gray-500 px-3 py-1 font-semibold
           focus:outline-none focus:ring-1 focus:ring-gray-400"
-          onChange={async (e) => {
-            const order = e.target.value as Order;
-            setOrder(order);
-          }}
+          onChange={onSelect}
+          defaultValue={order ?? "-spent_at"}
         >
           <option value="-spent_at">Sort by Date descending (default)</option>
           <option value="spent_at">Sort by Date ascending</option>
@@ -29,41 +49,28 @@ export default function Options() {
           className="flex gap-4"
         >
           <button
-            className={`rounded-lg ${currency === null ? "bg-blue-200 text-blue-600" : "bg-white"} px-3 py-1 font-bold
+            className={`rounded-lg ${!currency ? "bg-blue-200 text-blue-600" : "bg-white"} px-3 py-1 font-bold
             focus:outline-none focus:ring-1 focus:ring-gray-400`}
-            onClick={() => setCurrency(null)}
+            onClick={() => onFilter()}
           >
             ALL
           </button>
           <button
             className={`rounded-lg ${currency === "HUF" ? "bg-blue-200 text-blue-600" : "bg-white"} px-3 py-1 font-bold
             focus:outline-none focus:ring-1 focus:ring-gray-400`}
-            onClick={() => setCurrency("HUF")}
+            onClick={() => onFilter("HUF")}
           >
             HUF
           </button>
           <button
             className={`rounded-lg ${currency === "USD" ? "bg-blue-200 text-blue-600" : "bg-white"} px-3 py-1 font-bold
             focus:outline-none focus:ring-1 focus:ring-gray-400`}
-            onClick={() => setCurrency("USD")}
+            onClick={() => onFilter("USD")}
           >
             USD
           </button>
         </div>
       </section>
-      <ul
-        className="flex flex-col gap-4 w-full max-w-4xl px-10 pb-10 mx-auto"
-      >
-        {spendings.map((spending) => (
-          <Spending
-            key={spending.id}
-            description={spending.description}
-            amount={spending.amount}
-            currency={spending.currency}
-            spent_at={spending.spent_at}
-          />
-        ))}
-      </ul>
     </>
   )
 }

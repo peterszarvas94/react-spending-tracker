@@ -1,24 +1,22 @@
-import { z } from "zod";
 import type { Currency, Order, SpendingType } from "./types";
+import { z } from "zod";
 import { spendingSchema } from "./types";
 
 interface Props {
-  order?: Order;
+  order: Order;
   currency?: Currency;
 }
 
-export async function getSpendings({ order, currency }: Props = {}) {
+export async function getSpendings({ order, currency }: Props) {
   // create a URL object
   const url = new URL("https://shielded-depths-43687-bb049deacd16.herokuapp.com/spendings");
-  if (order) {
-    url.searchParams.set("order", order);
-  }
+  url.searchParams.set("order", order);
   if (currency) {
     url.searchParams.set("currency", currency);
   }
 
   //get spendings from API
-  const res = await fetch(url, { cache: "no-store" });
+  const res = await fetch(url, { next: { tags: ['spendings'] } });
   const spendings = await res.json();
 
   // check if the response is an array
@@ -26,9 +24,7 @@ export async function getSpendings({ order, currency }: Props = {}) {
   let parsedSpendingsArray: unknown[] = [];
   try {
     parsedSpendingsArray = spendingArraySchema.parse(spendings);
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) { }
 
   // check if objects are in the right format
   const parsedSpendings = parsedSpendingsArray.map((spending) => {
@@ -36,7 +32,6 @@ export async function getSpendings({ order, currency }: Props = {}) {
       const parsedSpending = spendingSchema.parse(spending);
       return parsedSpending;
     } catch (error) {
-      console.error(error);
       return null;
     }
   });
