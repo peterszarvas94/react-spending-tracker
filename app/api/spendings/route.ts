@@ -17,17 +17,19 @@ export async function POST(req: NextRequest) {
     currency,
   } = parsedData;
 
-  const amount = parseFloat(amountStr);
-  if (isNaN(amount)) {
+  const amountParsed = parseFloat(amountStr);
+  if (isNaN(amountParsed)) {
     return NextResponse.json({ error: "Amount is not a number" }, { status: 500 });
   }
+
+  const amountRounded = Math.round(amountParsed * 100) / 100;
 
   try {
     const res = await fetch(env("URL"), {
       method: 'POST',
       body: JSON.stringify({
         description,
-        amount,
+        amount: amountRounded,
         currency,
         spent_at: new Date().toISOString(),
       }),
