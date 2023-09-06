@@ -1,6 +1,10 @@
 export function convertToString(dateTimeStr: string) {
   const date = new Date(dateTimeStr);
 
+  if (date.toLocaleString() === "Invalid Date") {
+    return null;
+  }
+
   const timeStr = date.toLocaleString("en-US", {
     hour: "numeric",
     minute: "numeric",

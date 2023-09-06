@@ -8,17 +8,24 @@ interface Props {
   currency?: Currency;
 }
 
-export async function getSpendings({ order, currency }: Props) {
-  // create a URL object
+export async function getSpendings({ order, currency }: Props): Promise<SpendingType[]> {
   const url = new URL(env("URL"));
   url.searchParams.set("order", order);
   if (currency) {
     url.searchParams.set("currency", currency);
   }
-
-  //get spendings from API
   const res = await fetch(url);
-  const spendings = await res.json();
+  return convertData(res);
+}
+
+export async function convertData(res: Response) : Promise<SpendingType[]> {
+  let spendings;
+
+  try {
+    spendings = await res.json();
+  } catch (error) {
+    return [];
+  }
 
   // check if the response is an array
   const spendingArraySchema = z.array(z.unknown());

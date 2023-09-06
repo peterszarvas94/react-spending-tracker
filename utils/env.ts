@@ -7,4 +7,3 @@ export function env(key: string) {
 
   return variable;
 }
-
