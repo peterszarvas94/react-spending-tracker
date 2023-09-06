@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Spinner from "./Spinner";
+import { toast, Toaster } from "react-hot-toast";
 
 export default function Form() {
   const router = useRouter();
@@ -25,16 +26,19 @@ export default function Form() {
       if (response.ok) {
         form.reset();
         setSubmitting(false);
+        toast.success("Spending saved");
         router.refresh();
       }
     } catch (error) {
       console.error(error);
+      toast.error("Something went wrong");
       setSubmitting(false);
     }
   }
 
   return (
     <>
+      <Toaster />
       <form
         className="flex gap-4 w-full max-w-4xl p-10 mx-auto"
         id="spending-form"
