@@ -40,7 +40,7 @@ export default function Form() {
     <>
       <Toaster />
       <form
-        className="flex gap-4 w-full max-w-4xl p-10 mx-auto"
+        className="flex flex-col sm:flex-row gap-4 w-full max-w-4xl p-10 mx-auto "
         id="spending-form"
         onSubmit={submitForm}
       >
@@ -77,7 +77,7 @@ export default function Form() {
         <button
           className="rounded-lg border-none shadow border-2 py-1 font-bold
           bg-emerald-500 text-white focus:outline-none focus:ring-1 focus:ring-gray-500
-          w-16 flex justify-center items-center"
+          w-16 flex justify-center items-center self-center"
           type="submit"
           disabled={submitting}
         >

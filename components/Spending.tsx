@@ -24,17 +24,17 @@ export default function Spending({
   return (
 
     <li
-      className="flex items-center gap-4 p-6 w-full bg-white shadow rounded-lg"
+      className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-0 p-6 w-full bg-white shadow rounded-lg"
     >
       <div
-        className="flex items-center justify-center w-12 h-12 rounded-2xl
-            bg-blue-200 text-blue-600 text-3xl"
+        className="hidden sm:flex items-center justify-center w-12 h-12 rounded-2xl
+            bg-blue-200 text-blue-600 text-3xl grow-0 shrink-0"
       >
         <LuDollarSign />
       </div>
 
       <article
-        className="flex flex-col grow"
+        className="flex flex-col grow-0 sm:grow sm:pl-6"
       >
         <h1
           className="font-bold"
@@ -49,7 +49,7 @@ export default function Spending({
       </article>
 
       <div
-        className="font-bold"
+        className="font-bold sm:pr-4"
       >
         {amountStr}
       </div>
@@ -72,7 +72,6 @@ export default function Spending({
           <FaXmark />
         </button>
       </div>
-
-    </li>
+    </li >
   )
 }

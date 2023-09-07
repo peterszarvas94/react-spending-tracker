@@ -32,7 +32,7 @@ export default function Options({
   return (
     <>
       <section
-        className="flex justify-between w-full max-w-4xl p-10 mx-auto"
+        className="flex flex-col sm:flex-row gap-4 justify-between w-full max-w-4xl p-10 mx-auto"
       >
         <select
           className="rounded-lg bg-white px-3 py-1 font-semibold
@@ -46,7 +46,7 @@ export default function Options({
           <option value="amount">Sort by Amount ascending</option>
         </select>
         <div
-          className="flex gap-4"
+          className="flex self-center sm:self-auto gap-4"
         >
           <button
             className={`rounded-lg ${!currency ? "bg-blue-200 text-blue-600" : "bg-white"} px-3 py-1 font-bold
