@@ -34,10 +34,10 @@ export default function Spending({
       </div>
 
       <article
-        className="flex flex-col grow-0 sm:grow sm:pl-6"
+        className="flex flex-col w-full sm:flex-auto sm:overflow-hidden sm:pl-6"
       >
         <h1
-          className="font-bold"
+          className="font-bold truncate"
         >
           {description}
         </h1>

@@ -46,7 +46,7 @@ export default function Form() {
       >
         <input
           className="grow rounded-lg border-none shadow border-2 px-3 py-1 font-bold
-          placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400"
+          placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 min-w-0"
           type="text"
           name="description"
           placeholder="description"
@@ -55,7 +55,7 @@ export default function Form() {
         {/* max value int32 */}
         <input
           className="rounded-lg border-none shadow border-2 px-3 py-1 font-bold
-          placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400"
+          placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 min-w-0"
           placeholder="0"
           type="number"
           name="amount"
