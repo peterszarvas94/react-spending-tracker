@@ -1,6 +1,8 @@
-# Spending frontend
+# ARCHIVED - Spending frontend
 
-This project is for [Polygence coding challange](https://github.com/polygence/spending-frontend)
+This project was take-home project for a job interview.
+
+See the description [here](https://github.com/polygence/spending-frontend)
 
 ## How to run
 
